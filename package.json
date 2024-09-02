@@ -1,0 +1,26 @@
+{
+  "name": "mediaplayer",
+  "version": "1.0.0",
+  "description": "Interactive audio media player.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eric12345678910/mediaPlayer.git"
+  },
+  "keywords": [
+    "[\"node\"",
+    "\"express\"",
+    "\"web\"",
+    "\"server\"",
+    "\"audio\"]"
+  ],
+  "author": "\"Eric L\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eric12345678910/mediaPlayer/issues"
+  },
+  "homepage": "https://github.com/eric12345678910/mediaPlayer#readme"
+}
