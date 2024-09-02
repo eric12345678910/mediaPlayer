@@ -3,3 +3,17 @@
     font-family: 'futura', sans-serif;
     color: rgb(190, 90, 90);
 }
+
+
+
+ul{
+    border: 1px dashed grey;
+    padding: 0;
+}
+
+li{
+    border: 1px dotted blue;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
