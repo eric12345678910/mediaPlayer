@@ -13,3 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
     addFile('track two');
     addFile('track three');
 });
+
+
+console.log('this is a test')
