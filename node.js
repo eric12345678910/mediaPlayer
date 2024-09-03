@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/files', (req, res) => {
-    const directoryPath = path.join(__dirname, 'public');
+    const directoryPath = path.join(__dirname, 'public/audio');
     fs.readdir(directoryPath, (err, files) => {
         if (err) {
             return res.status(500).json({ error: 'Unable to read directory' });
