@@ -7,12 +7,12 @@
 
 
 ul{
-    border: 1px dashed grey;
+    border: 1px dashed honeydew;
     padding: 0;
 }
 
 li{
-    border: 1px dotted blue;
+    border: 1px dotted lightblue;
     display: flex;
     width: 100%;
     justify-content: center;
