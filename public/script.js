@@ -8,7 +8,7 @@ fetch('http://localhost:3000/files')
     })
     .then(files => {
         const ul = document.getElementById('track');
-        const regex = /^eg - (.*)copy\.wav$/;
+        const regex = /^eg - (.*?)(?: copy)?\.wav$/;
 
         files.forEach(file => {
             if(file === '.DS_Store'){
@@ -22,6 +22,8 @@ fetch('http://localhost:3000/files')
             li.addEventListener('click', () => {
                 console.log('song selected:', li.textContent);
             });
+
+            // output to html
             ul.appendChild(li);
         });
     })
@@ -29,6 +31,8 @@ fetch('http://localhost:3000/files')
         console.error('Error:', error)
     });
 
+
+// User Input (practice)
 addEventListener('DOMContentLoaded', () => {
     console.log('dom loaded...');
     document.getElementById('button').addEventListener('click', () => {
@@ -42,6 +46,10 @@ addEventListener('DOMContentLoaded', () => {
 
         // append new input
         document.getElementById('list').appendChild(li);
+
+        // clear text field
+        let placeholderText = "enter text here..."
+
 
 
 
