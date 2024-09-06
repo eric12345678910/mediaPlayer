@@ -1,4 +1,4 @@
-// connect to node.js
+// Connect to node.js server
 fetch('http://localhost:3000/files')
     .then(response => {
         if(!response.ok){
@@ -10,21 +10,37 @@ fetch('http://localhost:3000/files')
         const ul = document.getElementById('track');
         const regex = /^eg - (.*?)(?: copy)?\.wav$/;
 
+        // Perform function on each file
         files.forEach(file => {
+            // remove .DS_Store file
             if(file === '.DS_Store'){
                 return;
             }
-            const match = file.match(regex);
+
             const li = document.createElement('li');
-            li.textContent = match ? match[1]: file;
+            const a = document.createElement('a');
+
+            // set text and href
+            const match = file.match(regex);
+            a.textContent = match ? match[1]: file;
+            a.href = `audio/${file}`;
+
 
             // add click event
-            li.addEventListener('click', () => {
-                console.log('song selected:', li.textContent);
+            a.addEventListener('click', () => {
+                console.log('song selected:', a.textContent);
+
+                // audio source
+                const audioSrc = a.href;
+                audioPlayer.src = audioSrc;
+                audioPlayer.style.display = 'block';
+                audioPlayer.play().catch(error => {
+                    console.error('Error:', error);
+                });
             });
 
             // output to html
-            ul.appendChild(li);
+            ul.appendChild(a);
         });
     })
     .catch(error => {
