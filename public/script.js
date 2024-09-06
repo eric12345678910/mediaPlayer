@@ -8,7 +8,7 @@ fetch('http://localhost:3000/files')
     })
     .then(files => {
         const ul = document.getElementById('track');
-        const regex = /^eg - (.*)\.wav$/;
+        const regex = /^eg - (.*)copy\.wav$/;
 
         files.forEach(file => {
             if(file === '.DS_Store'){
