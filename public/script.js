@@ -28,3 +28,19 @@ fetch('http://localhost:3000/files')
     .catch(error => {
         console.error('Error:', error)
     });
+
+addEventListener('DOMContentLoaded', () => {
+    console.log('dom loaded...');
+    document.getElementById('button').addEventListener('click', () => {
+
+        // get value from user input
+        let inputValue = document.getElementById('textInput').value;
+
+        // create new list item
+        const li = document.createElement('li');
+        li.textContent = inputValue;
+
+        // append new input
+        document.getElementById('list').appendChild(li);
+
+    })});
