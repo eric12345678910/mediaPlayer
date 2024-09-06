@@ -43,4 +43,6 @@ addEventListener('DOMContentLoaded', () => {
         // append new input
         document.getElementById('list').appendChild(li);
 
+
+
     })});

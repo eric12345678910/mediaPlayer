@@ -20,4 +20,14 @@ li{
     display: flex;
     width: 400px;
     justify-content: center;
+    cursor: pointer;
 }
+
+li:hover{
+    background-color: #f0fff0;
+}
+
+li:active{
+    background-color: lightblue;
+}
+
