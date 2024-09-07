@@ -13,24 +13,56 @@ document.addEventListener('DOMContentLoaded', ()=> {
         .then(files => {
             const regex = /^eg - (.*?)(?: copy)?\.wav$/;
 
+
             // Perform function on each file
             files.forEach(file => {
                 // remove .DS_Store file
                 if (file.endsWith('.wav')) {
-                    console.log("File Name: ", file)
-
+                    console.log("file: ", file)
 
                     const li = document.createElement('li');
 
-
-                    // set text and href
+                    /*
+                    // set data source for the list element
                     li.setAttribute('data-audio-src', `/audio/${file}`);
                     console.log("Audio Src: ", li.getAttribute('data-audio-src'));
+*/
 
+                    //
+                    //const regexPath = regex.exec(file);
+                    const whitespaceRegEx = /\s/
+                    const frontRegEx = /\(/
+                    const backRegEx = /\)/
+                    let newString = "/audio/"
+
+                    for(const char of file){
+                        if(whitespaceRegEx.test(char) ){
+                            newString += ("%20");
+                        }
+                        else if(frontRegEx.test(char) ){
+                            newString += ("%28");
+                        }
+                        else if(backRegEx.test(char) ){
+                            newString += ("%29");
+                        }
+                        else {
+                            newString += (char);
+                        }
+
+                    }
+
+                    console.log('newString: ', newString);
+
+                    // set li path
+                    li.setAttribute('data-audio-src', newString);
+                    li.setAttribute('data-path', newString);
+                    console.log('audio src: ', li.getAttribute('data-audio-src'));
+                    console.log('path: ', li.getAttribute('data-path'));
+
+
+                    // add cleaned text to li text
                     const match = file.match(regex);
                     li.textContent = match ? match[1] : file;
-
-
 
                     // add click event
                     li.addEventListener('click', () => {
@@ -38,6 +70,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                         // audio source
                         const audioSrc = li.getAttribute('data-audio-src');
+                        console.log('audioSrc: ', audioSrc);
                         audioPlayer.src = audioSrc;
                         audioPlayer.style.display = 'block';
                         audioPlayer.play().catch(error => {
