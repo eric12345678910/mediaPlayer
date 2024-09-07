@@ -1,51 +1,61 @@
 // Connect to node.js server
-fetch('http://localhost:3000/files')
-    .then(response => {
-        if(!response.ok){
-            throw new Error('network response not ok');
-        }
-        return response.json();
-    })
-    .then(files => {
-        const ul = document.getElementById('track');
-        const regex = /^eg - (.*?)(?: copy)?\.wav$/;
-
-        // Perform function on each file
-        files.forEach(file => {
-            // remove .DS_Store file
-            if(file === '.DS_Store'){
-                return;
+document.addEventListener('DOMContentLoaded', ()=> {
+    const audioPlayer = document.getElementById('audioPlayer');
+    const ul = document.getElementById('trackId');
+    // fetch files from /audio folder
+    fetch('http://localhost:3000/files')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('network response not ok');
             }
+            return response.json();
+        })
+        .then(files => {
+            const regex = /^eg - (.*?)(?: copy)?\.wav$/;
 
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-
-            // set text and href
-            const match = file.match(regex);
-            a.textContent = match ? match[1]: file;
-            a.href = `audio/${file}`;
+            // Perform function on each file
+            files.forEach(file => {
+                // remove .DS_Store file
+                if (file.endsWith('.wav')) {
+                    console.log("File Name: ", file)
 
 
-            // add click event
-            a.addEventListener('click', () => {
-                console.log('song selected:', a.textContent);
+                    const li = document.createElement('li');
 
-                // audio source
-                const audioSrc = a.href;
-                audioPlayer.src = audioSrc;
-                audioPlayer.style.display = 'block';
-                audioPlayer.play().catch(error => {
-                    console.error('Error:', error);
-                });
-            });
 
-            // output to html
-            ul.appendChild(a);
+                    // set text and href
+                    li.setAttribute('data-audio-src', `/audio/${file}`);
+                    console.log("Audio Src: ", li.getAttribute('data-audio-src'));
+
+                    const match = file.match(regex);
+                    li.textContent = match ? match[1] : file;
+
+
+
+                    // add click event
+                    li.addEventListener('click', () => {
+                        console.log('song selected:', li.textContent);
+
+                        // audio source
+                        const audioSrc = li.getAttribute('data-audio-src');
+                        audioPlayer.src = audioSrc;
+                        audioPlayer.style.display = 'block';
+                        audioPlayer.play().catch(error => {
+                            console.error('Error:', error);
+                        });
+                    });
+
+                    // output to html
+                    ul.appendChild(li);
+                    console.log('\n')
+                }});
+        })
+        .catch(error => {
+            console.error('Error:', error)
         });
-    })
-    .catch(error => {
-        console.error('Error:', error)
-    });
+});
+
+
 
 
 // User Input (practice)

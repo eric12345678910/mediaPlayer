@@ -15,7 +15,7 @@ ul{
     padding: 0;
 }
 
-a{
+li{
     border: 1px dotted lightblue;
     display: flex;
     width: 400px;
@@ -23,11 +23,11 @@ a{
     cursor: pointer;
 }
 
-a:hover{
+li:hover{
     background-color: #f0fff0;
 }
 
-a:active{
+li:active{
     background-color: lightblue;
 }
 
