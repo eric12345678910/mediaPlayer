@@ -41,23 +41,25 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 console.log('path: ', li.getAttribute('data-path'));
 */
 
-                // add cleaned text to li text
+                // Clean track name and assign
                 const match = file.match(regex);
                 const trackName = match ? match[1] : file;
                 console.log("Track Name: ", trackName);
                 li.textContent = trackName;
-                // add click event
-                button.addEventListener('click', () => {
+
+
+                // add click to play
+                li.addEventListener('click', () => {
                     console.log('song selected:', li.textContent);
 
                     // set audio source
-                    //const audioSrc = audio;
-                    //console.log('audioSrc: ', encodedUrl);
-                    audioPlayer.src = encodedUrl;
-                    console.log('audioPlayer.src: ', encodedUrl);
+                    audioPlayer.src = 'http://localhost:3000' + encodedUrl;
+                    console.log('audioPlayer.src: ', audioPlayer.src);
 
+                    // set the style of the audio player
                     audioPlayer.style.display = 'block';
                     console.log('audio player set as block');
+
                     audioPlayer.play().catch(error => {
                         console.error('Error:', error);
                     });
@@ -66,7 +68,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 // output to html
                 ul.appendChild(li);
                 li.appendChild(audio);
-                li.appendChild(button);
+                //li.appendChild(button);
                 console.log('\n')
                 });
         })
