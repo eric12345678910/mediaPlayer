@@ -26,27 +26,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 const audio = document.createElement('audio');
                 audio.src = file;
 
-                // create <button>
-                const button = document.createElement('button');
-
                 // update file to url encoding
                 const encodedUrl = "/audio/" + encodeURIComponent(file);
                 console.log('encodedUrl: ', encodedUrl);
-
-                /*
-                // set li path
-                li.setAttribute('data-audio-src', audio);
-                li.setAttribute('data-path', encodedUrl);
-                console.log('audio src: ', li.getAttribute('data-audio-src'));
-                console.log('path: ', li.getAttribute('data-path'));
-*/
 
                 // Clean track name and assign
                 const match = file.match(regex);
                 const trackName = match ? match[1] : file;
                 console.log("Track Name: ", trackName);
                 li.textContent = trackName;
-
 
                 // add click to play
                 li.addEventListener('click', () => {
@@ -60,7 +48,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     audioPlayer.style.display = 'flex';
                     audioPlayer.style.width = '100%';
                     audioPlayer.style.justifyContent ='center'
-                    audioPlayer.style.borderRadius = '2%';
+                    audioPlayer.style.opacity = '80%';
 
                     audioPlayer.play().catch(error => {
                         console.error('Error:', error);
@@ -69,8 +57,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 // output to html
                 ul.appendChild(li);
-                li.appendChild(audio);
-                //li.appendChild(button);
                 console.log('\n')
                 });
         })
