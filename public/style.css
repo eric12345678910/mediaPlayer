@@ -38,9 +38,13 @@ li:active{
 }
 
 
-.nowPlaying{
+span {
     display: flex;
-    width: 100px;
-    color: black;
+    width: 150px;
+    color: antiquewhite;
+    font-size: 16px;
+    position: absolute;
+    right: 200px;
+    z-index: 10;
 
 }

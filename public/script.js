@@ -16,15 +16,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
             // Perform function on each file
             files.forEach(file => {
-
-                console.log("file: ", file)
-
                 // create <li> element
                 const li = document.createElement('li');
 
+                // create span element to show active track
                 const nowPlaying = document.createElement('span');
-                nowPlaying.Id = 'nowPlaying';
-                nowPlaying.textContent = 'now playing...'
+                nowPlaying.id = 'nowPlaying';
+                nowPlaying.textContent = ''
 
                 // create <audio> element
                 const audio = document.createElement('audio');
@@ -32,7 +30,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 // update file to url encoding
                 const encodedUrl = "/audio/" + encodeURIComponent(file);
-                console.log('encodedUrl: ', encodedUrl);
 
                 // Clean track name and assign
                 const match = file.match(regex);
@@ -42,9 +39,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 // add click to play
                 li.addEventListener('click', () => {
-
                     console.log('now playing:', li.textContent);
 
+                    const reset = document.getElementById('nowPlaying');
+                    if(reset){
+                        reset.remove();
+                    }
                     // set audio source
                     audioPlayer.src = 'http://localhost:3000' + encodedUrl;
                     console.log('audioPlayer.src: ', audioPlayer.src);
@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     audioPlayer.style.justifyContent ='center'
                     audioPlayer.style.opacity = '75%';
 
+                    nowPlaying.textContent = 'now playing...'
+                    li.appendChild(nowPlaying);
 
                     audioPlayer.play().catch(error => {
                         console.error('Error:', error);
@@ -62,12 +64,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     });
                 });
 
-
-
-
                 // output to html
                 ul.appendChild(li);
-                li.appendChild(nowPlaying);
+
                 console.log('\n')
                 });
         })
