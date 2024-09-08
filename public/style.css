@@ -16,19 +16,23 @@ ul{
 }
 
 li{
-    border: 1px dotted lightblue;
+    border: 1px dotted white;
     display: flex;
     width: 400px;
     justify-content: center;
     cursor: pointer;
 }
 
+li:nth-child(2){
+    background-color: antiquewhite;
+}
+
 li:hover{
-    background-color: #f0fff0;
+    background-color: navajowhite;
 }
 
 li:active{
-    background-color: lightblue;
+    background-color: navajowhite;
 }
 
 
