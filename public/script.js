@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
             return response.json();
         })
         .then(files => {
+            // create regex pattern to clean display name
             const regex = /^eg - (.*?)(?: copy)?\.wav$/;
-
 
             // Perform function on each file
             files.forEach(file => {
@@ -20,42 +20,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 if (file.endsWith('.wav')) {
                     console.log("file: ", file)
 
+                    // create <li> element that will act as the button
                     const li = document.createElement('li');
 
-                    /*
-                    // set data source for the list element
-                    li.setAttribute('data-audio-src', `/audio/${file}`);
-                    console.log("Audio Src: ", li.getAttribute('data-audio-src'));
-*/
-
-                    //
-                    //const regexPath = regex.exec(file);
-                    const whitespaceRegEx = /\s/
-                    const frontRegEx = /\(/
-                    const backRegEx = /\)/
-                    let newString = "/audio/"
-
-                    for(const char of file){
-                        if(whitespaceRegEx.test(char) ){
-                            newString += ("%20");
-                        }
-                        else if(frontRegEx.test(char) ){
-                            newString += ("%28");
-                        }
-                        else if(backRegEx.test(char) ){
-                            newString += ("%29");
-                        }
-                        else {
-                            newString += (char);
-                        }
-
-                    }
-
-                    console.log('newString: ', newString);
+                    // update file to url encoding
+                    const encodedUrl = "/audio/" + encodeURIComponent(file);
+                    console.log('encodedUrl: ', encodedUrl);
 
                     // set li path
-                    li.setAttribute('data-audio-src', newString);
-                    li.setAttribute('data-path', newString);
+                    li.setAttribute('data-audio-src', encodedUrl);
+                    li.setAttribute('data-path', encodedUrl);
                     console.log('audio src: ', li.getAttribute('data-audio-src'));
                     console.log('path: ', li.getAttribute('data-path'));
 
@@ -68,11 +42,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     li.addEventListener('click', () => {
                         console.log('song selected:', li.textContent);
 
-                        // audio source
+                        // set audio source
                         const audioSrc = li.getAttribute('data-audio-src');
                         console.log('audioSrc: ', audioSrc);
                         audioPlayer.src = audioSrc;
+                        console.log('audioPlayer.src = autioSrc');
+
                         audioPlayer.style.display = 'block';
+                        console.log('set as block');
                         audioPlayer.play().catch(error => {
                             console.error('Error:', error);
                         });
@@ -89,7 +66,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 });
 
 
-
+/*
 
 // User Input (practice)
 addEventListener('DOMContentLoaded', () => {
@@ -108,8 +85,4 @@ addEventListener('DOMContentLoaded', () => {
 
         // clear text field
         let placeholderText = "enter text here..."
-
-
-
-
-    })});
+    })});*/
