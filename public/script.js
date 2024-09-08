@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 // create <li> element
                 const li = document.createElement('li');
 
+                const nowPlaying = document.createElement('span');
+                nowPlaying.Id = 'nowPlaying';
+                nowPlaying.textContent = 'now playing...'
+
                 // create <audio> element
                 const audio = document.createElement('audio');
                 audio.src = file;
@@ -38,7 +42,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 // add click to play
                 li.addEventListener('click', () => {
-                    console.log('song selected:', li.textContent);
+
+                    console.log('now playing:', li.textContent);
 
                     // set audio source
                     audioPlayer.src = 'http://localhost:3000' + encodedUrl;
@@ -48,15 +53,21 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     audioPlayer.style.display = 'flex';
                     audioPlayer.style.width = '100%';
                     audioPlayer.style.justifyContent ='center'
-                    audioPlayer.style.opacity = '80%';
+                    audioPlayer.style.opacity = '75%';
+
 
                     audioPlayer.play().catch(error => {
                         console.error('Error:', error);
+
                     });
                 });
 
+
+
+
                 // output to html
                 ul.appendChild(li);
+                li.appendChild(nowPlaying);
                 console.log('\n')
                 });
         })
