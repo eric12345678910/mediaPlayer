@@ -16,49 +16,48 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
             // Perform function on each file
             files.forEach(file => {
-                // remove .DS_Store file
-                if (file.endsWith('.wav')) {
-                    console.log("file: ", file)
 
-                    // create <li> element that will act as the button
-                    const li = document.createElement('li');
+                console.log("file: ", file)
 
-                    // update file to url encoding
-                    const encodedUrl = "/audio/" + encodeURIComponent(file);
-                    console.log('encodedUrl: ', encodedUrl);
+                // create <li> element that will act as the button
+                const li = document.createElement('li');
 
-                    // set li path
-                    li.setAttribute('data-audio-src', encodedUrl);
-                    li.setAttribute('data-path', encodedUrl);
-                    console.log('audio src: ', li.getAttribute('data-audio-src'));
-                    console.log('path: ', li.getAttribute('data-path'));
+                // update file to url encoding
+                const encodedUrl = "/audio/" + encodeURIComponent(file);
+                console.log('encodedUrl: ', encodedUrl);
+
+                // set li path
+                li.setAttribute('data-audio-src', encodedUrl);
+                li.setAttribute('data-path', encodedUrl);
+                console.log('audio src: ', li.getAttribute('data-audio-src'));
+                console.log('path: ', li.getAttribute('data-path'));
 
 
-                    // add cleaned text to li text
-                    const match = file.match(regex);
-                    li.textContent = match ? match[1] : file;
+                // add cleaned text to li text
+                const match = file.match(regex);
+                li.textContent = match ? match[1] : file;
 
-                    // add click event
-                    li.addEventListener('click', () => {
-                        console.log('song selected:', li.textContent);
+                // add click event
+                li.addEventListener('click', () => {
+                    console.log('song selected:', li.textContent);
 
-                        // set audio source
-                        const audioSrc = li.getAttribute('data-audio-src');
-                        console.log('audioSrc: ', audioSrc);
-                        audioPlayer.src = audioSrc;
-                        console.log('audioPlayer.src = autioSrc');
+                    // set audio source
+                    const audioSrc = li.getAttribute('data-audio-src');
+                    console.log('audioSrc: ', audioSrc);
+                    audioPlayer.src = audioSrc;
+                    console.log('audioPlayer.src = autioSrc');
 
-                        audioPlayer.style.display = 'block';
-                        console.log('set as block');
-                        audioPlayer.play().catch(error => {
-                            console.error('Error:', error);
-                        });
+                    audioPlayer.style.display = 'block';
+                    console.log('set as block');
+                    audioPlayer.play().catch(error => {
+                        console.error('Error:', error);
                     });
+                });
 
-                    // output to html
-                    ul.appendChild(li);
-                    console.log('\n')
-                }});
+                // output to html
+                ul.appendChild(li);
+                console.log('\n')
+                });
         })
         .catch(error => {
             console.error('Error:', error)
