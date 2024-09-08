@@ -57,8 +57,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     console.log('audioPlayer.src: ', audioPlayer.src);
 
                     // set the style of the audio player
-                    audioPlayer.style.display = 'block';
-                    console.log('audio player set as block');
+                    audioPlayer.style.display = 'flex';
+                    audioPlayer.style.width = '100%';
+                    audioPlayer.style.justifyContent ='center'
+                    audioPlayer.style.borderRadius = '2%';
 
                     audioPlayer.play().catch(error => {
                         console.error('Error:', error);
