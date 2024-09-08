@@ -19,36 +19,45 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 console.log("file: ", file)
 
-                // create <li> element that will act as the button
+                // create <li> element
                 const li = document.createElement('li');
+
+                // create <audio> element
+                const audio = document.createElement('audio');
+                audio.src = file;
+
+                // create <button>
+                const button = document.createElement('button');
 
                 // update file to url encoding
                 const encodedUrl = "/audio/" + encodeURIComponent(file);
                 console.log('encodedUrl: ', encodedUrl);
 
+                /*
                 // set li path
-                li.setAttribute('data-audio-src', encodedUrl);
+                li.setAttribute('data-audio-src', audio);
                 li.setAttribute('data-path', encodedUrl);
                 console.log('audio src: ', li.getAttribute('data-audio-src'));
                 console.log('path: ', li.getAttribute('data-path'));
-
+*/
 
                 // add cleaned text to li text
                 const match = file.match(regex);
-                li.textContent = match ? match[1] : file;
-
+                const trackName = match ? match[1] : file;
+                console.log("Track Name: ", trackName);
+                li.textContent = trackName;
                 // add click event
-                li.addEventListener('click', () => {
+                button.addEventListener('click', () => {
                     console.log('song selected:', li.textContent);
 
                     // set audio source
-                    const audioSrc = li.getAttribute('data-audio-src');
-                    console.log('audioSrc: ', audioSrc);
-                    audioPlayer.src = audioSrc;
-                    console.log('audioPlayer.src = autioSrc');
+                    //const audioSrc = audio;
+                    //console.log('audioSrc: ', encodedUrl);
+                    audioPlayer.src = encodedUrl;
+                    console.log('audioPlayer.src: ', encodedUrl);
 
                     audioPlayer.style.display = 'block';
-                    console.log('set as block');
+                    console.log('audio player set as block');
                     audioPlayer.play().catch(error => {
                         console.error('Error:', error);
                     });
@@ -56,6 +65,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 // output to html
                 ul.appendChild(li);
+                li.appendChild(audio);
+                li.appendChild(button);
                 console.log('\n')
                 });
         })
