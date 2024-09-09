@@ -10,6 +10,12 @@ body{
     flex-direction: column;
     align-items: center;
 }
+
+.header{
+    margin: 0 auto;
+    width: 90%;
+    border: 1px dotted lightgray;
+}
 ul{
     border: 1px dashed honeydew;
     padding: 0;
@@ -18,11 +24,13 @@ ul{
 }
 
 li{
+    position: relative;
     border: 10px solid white;
     display: flex;
     width: 400px;
     justify-content: center;
     cursor: pointer;
+    font-size: 20px;
 }
 
 li:nth-child(2){
@@ -40,11 +48,17 @@ li:active{
 
 span {
     display: flex;
-    width: 150px;
-    color: antiquewhite;
-    font-size: 16px;
+    width: auto;
     position: absolute;
-    right: 200px;
-    z-index: 10;
+    right: -120px;
+    top: -8px;
+    z-index: 1;
+    opacity: 30%;
+
+    color: rosybrown;
+    font-size: 20px;
+
+    z-index: 1;
+
 
 }

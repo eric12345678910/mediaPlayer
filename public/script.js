@@ -1,6 +1,13 @@
 // Connect to node.js server
 document.addEventListener('DOMContentLoaded', ()=> {
     const audioPlayer = document.getElementById('audioPlayer');
+
+    // set the style of the audio player
+    audioPlayer.style.display = 'flex';
+    audioPlayer.style.width = '100%';
+    audioPlayer.style.justifyContent ='center'
+    audioPlayer.style.opacity = '75%';
+
     const ul = document.getElementById('trackId');
     // fetch files from /audio folder
     fetch('http://localhost:3000/files')
@@ -49,11 +56,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     audioPlayer.src = 'http://localhost:3000' + encodedUrl;
                     console.log('audioPlayer.src: ', audioPlayer.src);
 
-                    // set the style of the audio player
-                    audioPlayer.style.display = 'flex';
-                    audioPlayer.style.width = '100%';
-                    audioPlayer.style.justifyContent ='center'
-                    audioPlayer.style.opacity = '75%';
 
                     nowPlaying.textContent = 'now playing...'
                     li.appendChild(nowPlaying);
